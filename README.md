@@ -1,4 +1,4 @@
-# test-project
+# RCONNECT - Vue 3 + Tailwind + PrelineUI
 
 ## Project setup
 ```
