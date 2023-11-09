@@ -6,7 +6,7 @@
         </div>
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form class="space-y-6" @submit="authorize()">
+        <form class="space-y-6" @submit.stop.prevent="authorize()">
             <div>
             <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
             <div class="mt-2">
@@ -50,8 +50,8 @@ export default {
     methods: {
         authorize() {
             console.log('authorize');
-            this.$router.replace('/profile');
-            return false;
+            this.$router.push('/profile');
+            // return false;
         }
     }
 }

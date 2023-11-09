@@ -102,8 +102,8 @@
   
 <script>
 import { ref } from 'vue'
-// import { Dialog, DialogPanel } from '@headlessui/vue'
-// import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
+import { Dialog, DialogPanel } from '@headlessui/vue'
+import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
 
 export default {
     data() {
@@ -127,6 +127,12 @@ export default {
             ],
             mobileMenuOpen: ref(false)
         }
+    },
+    components: {
+        Bars3Icon,
+        XMarkIcon,
+        Dialog,
+        DialogPanel
     }
 }
 </script>
