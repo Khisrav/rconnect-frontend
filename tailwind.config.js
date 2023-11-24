@@ -3,7 +3,6 @@ module.exports = {
   content: [
     './public/**/*.html', 
     './src/**/*.{vue,js,ts,jsx,tsx}',
-    'node_modules/preline/dist/*.js',
   ],
   presets: [],
   darkMode: 'media', // or 'class'
@@ -993,7 +992,7 @@ module.exports = {
     },
   },
   plugins: [
-    require('preline/plugin'),
+    require("daisyui")
   ],
 }
 
