@@ -15,7 +15,7 @@ export default {
 <template>
     <HomeHeader/> 
     <section class="bg-white dark:bg-gray-900">
-        <div class="py-16 px-4 mx-auto max-w-screen-xl text-center lg:py-40 lg:px-12 ">
+        <div class="py-16 px-4 mx-auto max-w-screen-xl text-center lg:py-40 lg:px-12 h-screen">
             <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">RCONNECT - платформа для студентов</h1>
             <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.</p>
             <div class="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">

@@ -1,11 +1,35 @@
 <script>
+import { login } from '../core/auth';
+
 export default {
-    methods: {
-        authorize() {
-            console.log('auth');
-            this.$router.push('/profile');
-            return false;
+    data() {
+        return {
+            user: {
+                email: '',
+                password: ''
+            },
+            disableForm: false,
         }
+    },
+    methods: {
+        async login() {
+            this.disableForm = true;
+            try {
+                const data = await login(this.user.email, this.user.password);
+                console.log(data);
+                if (data.status == 200) {
+                    localStorage.setItem('token', data.data.key);
+                    this.$router.push('/profile');
+                }
+            } catch (error) {
+                if (error.response && error.response.status === 401) {
+                    console.error('Неправильный логин или пароль');
+                } else {
+                    console.error('Ошибка входа:', error.message);
+                }
+            }
+            this.disableForm = false;
+        },
     }
 }
 </script>
@@ -16,7 +40,7 @@ export default {
             <img src="@/assets/logo.png" class="mr-4 h-11" alt="RCONNECT Logo">
         </RouterLink>
         <!-- Card -->
-        <div class="items-center justify-center w-full lg:w-1/3 bg-white rounded-lg shadow lg:flex md:mt-0 lg:max-w-screen-lg 2xl:max:max-w-screen-lg xl:p-0 dark:bg-gray-800">
+        <div class="items-center justify-center w-full lg:w-1/3 bg-white rounded-lg shadow-2xl lg:flex md:mt-0 lg:max-w-screen-lg 2xl:max:max-w-screen-lg xl:p-0 dark:bg-gray-800">
             <!-- <div class="hidden w-2/3 lg:flex">
                 <img class="rounded-l-lg" src="/images/authentication/login.jpg" alt="login image">
             </div> -->
@@ -24,18 +48,18 @@ export default {
                 <h2 class="text-2xl font-bold text-center text-gray-900 lg:text-3xl dark:text-white">
                     Войдите в платформу
                 </h2>
-                <form class="mt-8 space-y-6" @submit.prevent="authorize">
+                <form class="mt-8 space-y-6" @submit.prevent="login()">
                     <div>
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ваша почта</label>
-                        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="name@company.com" required>
+                        <input v-model="user.email" :disabled="disableForm" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="name@company.com" required>
                     </div>
                     <div>
                         <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ваш пароль</label>
-                        <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                        <input v-model="user.password" :disabled="disableForm" type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
                     </div>
                     <div class="flex items-start">
                         <div class="flex items-center h-5">
-                            <input id="remember" aria-describedby="remember" name="remember" type="checkbox" class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:focus:ring-primary-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
+                            <input :disabled="disableForm" id="remember" aria-describedby="remember" name="remember" type="checkbox" class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:focus:ring-primary-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
                         </div>
                         <div class="ml-3 text-sm">
                         <label for="remember" class="font-medium text-gray-900 dark:text-white">Вспомнить меня</label>

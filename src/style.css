@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* For Chrome, Safari, and newer Edge */
+::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-gray-800; /* Color of the track (the area behind the scrollbar) */
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-gray-600;
+    border-radius: 4px; /* Rounded corners of the thumb */
+    border: none; /* Border around the thumb */
+}
