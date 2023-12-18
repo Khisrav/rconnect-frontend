@@ -1,58 +1,77 @@
-<template>
-    <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img class="mx-auto h-10 w-auto" src="@/assets/logo.png" alt="Your Company" />
-        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Подключайся к нам</h2>
-        </div>
-
-        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form class="space-y-6" @submit.stop.prevent="authorize()">
-            <div>
-            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
-            <div class="mt-2">
-                <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-            </div>
-            </div>
-
-            <div>
-            <div class="flex items-center justify-between">
-                <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Пароль</label>
-                <div class="text-sm">
-                <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Забыл пароль?</a>
-                </div>
-            </div>
-            <div class="mt-2">
-                <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-            </div>
-            </div>
-
-            <div>
-            <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Войти</button>
-            </div>
-        </form>
-
-        <p class="mt-10 text-center text-sm text-gray-500">
-            Нет аккаунта?
-            <a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Жми сюда</a>
-        </p>
-        </div>
-    </div>
-</template>
-
-
 <script>
+import { login } from '../core/auth';
+
 export default {
     data() {
         return {
-
+            user: {
+                email: '',
+                password: ''
+            },
+            disableForm: false,
         }
     },
     methods: {
-        authorize() {
-            console.log('authorize');
-            this.$router.push('/profile');
-            // return false;
-        }
+        async login() {
+            this.disableForm = true;
+            try {
+                const data = await login(this.user.email, this.user.password);
+                console.log(data);
+                if (data.status == 200) {
+                    localStorage.setItem('token', data.data.key);
+                    this.$router.push('/profile');
+                }
+            } catch (error) {
+                if (error.response && error.response.status === 401) {
+                    console.error('Неправильный логин или пароль');
+                } else {
+                    console.error('Ошибка входа:', error.message);
+                }
+            }
+            this.disableForm = false;
+        },
     }
 }
 </script>
+
+<template>
+    <div class="flex flex-col items-center justify-center h-screen px-6 pt-8 mx-auto md:h-screen pt:mt-0 dark:bg-gray-900">
+        <RouterLink to="/" class="flex items-center justify-center mb-8 text-2xl font-semibold lg:mb-10 dark:text-white">
+            <img src="@/assets/logo.png" class="mr-4 h-11" alt="RCONNECT Logo">
+        </RouterLink>
+        <!-- Card -->
+        <div class="items-center justify-center w-full lg:w-1/3 bg-white rounded-lg shadow-2xl lg:flex md:mt-0 lg:max-w-screen-lg 2xl:max:max-w-screen-lg xl:p-0 dark:bg-gray-800">
+            <!-- <div class="hidden w-2/3 lg:flex">
+                <img class="rounded-l-lg" src="/images/authentication/login.jpg" alt="login image">
+            </div> -->
+            <div class="w-full p-6 space-y-8 sm:p-8 lg:p-8">
+                <h2 class="text-2xl font-bold text-center text-gray-900 lg:text-3xl dark:text-white">
+                    Войдите в платформу
+                </h2>
+                <form class="mt-8 space-y-6" @submit.prevent="login()">
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ваша почта</label>
+                        <input v-model="user.email" :disabled="disableForm" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="name@company.com" required>
+                    </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ваш пароль</label>
+                        <input v-model="user.password" :disabled="disableForm" type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input :disabled="disableForm" id="remember" aria-describedby="remember" name="remember" type="checkbox" class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:focus:ring-primary-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
+                        </div>
+                        <div class="ml-3 text-sm">
+                        <label for="remember" class="font-medium text-gray-900 dark:text-white">Вспомнить меня</label>
+                        </div>
+                        <a href="#" class="ml-auto text-sm text-primary-700 hover:underline dark:text-primary-500">Забыли пароль?</a>
+                    </div>
+                    <button type="submit" class="w-full px-5 py-3 text-base font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Войти</button>
+                    <div class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                        Нет аккаунта? <router-link to="/register" class="text-primary-700 hover:underline dark:text-primary-500 cursor-pointer">Зарегистрироваться</router-link>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>

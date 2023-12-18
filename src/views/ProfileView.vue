@@ -1,13 +1,13 @@
-<template>
-    <HelloWorld></HelloWorld>
-</template>
-
 <script>
-import HelloWorld from '@/components/HelloWorld.vue';
+import UserNavbar from '../components/UserNavbar.vue';
 
 export default {
     components: {
-        HelloWorld
+        UserNavbar
     }
 }
 </script>
+
+<template>
+    <UserNavbar></UserNavbar>
+</template>
