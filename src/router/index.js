@@ -44,6 +44,14 @@ const router = createRouter({
         requiresAuth: true
       }
     },
+    {
+      path: '/explore',
+      name: 'explore',
+      component: () => import('../views/ExploreView.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
   ]
 });
 
