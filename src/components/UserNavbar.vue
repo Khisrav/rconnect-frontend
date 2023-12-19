@@ -1,7 +1,13 @@
 <script>
 import { initFlowbite } from 'flowbite'
+import { getRandomAvatar } from '../core/user';
 
 export default {
+    data() {
+        return {
+            avatarSVG: ''
+        }
+    },
     mounted() {
         initFlowbite();
         this.themeToggler();
@@ -49,6 +55,13 @@ export default {
                 
             });
         },
+    },
+    async beforeMount() {
+        try {
+            this.avatarSVG = await getRandomAvatar(localStorage.getItem('token'));
+        } catch (error) {
+            console.error('Error getting avatar:', error);
+        }
     }
 }
 </script>
@@ -63,8 +76,8 @@ export default {
                 <span class="sr-only">Toggle sidebar</span>
             </button>
             <router-link to="/" class="flex items-center justify-between mr-4">
-                <img src="https://flowbite.s3.amazonaws.com/logo.svg" class="mr-3 h-8" alt="Flowbite Logo" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">RCONNECT</span>
+                <img src="https://flowbite.s3.amazonaws.com/logo.svg" class="mr-2 h-5" alt="Flowbite Logo" />
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">RCONNECT</span>
             </router-link>
             <form action="#" method="GET" class="hidden md:block md:pl-2">
                 <label for="topbar-search" class="sr-only">Поиск</label>
@@ -107,7 +120,7 @@ export default {
             </div>
             <button type="button" class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown" >
                 <span class="sr-only">Open user menu</span>
-                <img class="w-8 h-8 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png" alt="user photo" />
+                <img class="w-8 h-8 rounded-full" :src="avatarSVG" alt="user photo" />
             </button>
             <!-- Dropdown menu -->
             <div

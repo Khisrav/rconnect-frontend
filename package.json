@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@dicebear/collection": "^7.0.1",
+    "@dicebear/core": "^7.0.1",
     "@intlify/unplugin-vue-i18n": "^1.6.0",
     "axios": "^1.6.2",
     "flowbite": "^2.2.0",
