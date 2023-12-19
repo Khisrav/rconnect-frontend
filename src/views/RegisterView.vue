@@ -41,7 +41,8 @@
         </div>
         <div v-else class="w-full text-center p-6 space-y-8 sm:p-8 lg:p-8 dark:text-white">
             <p class="text-2xl font-bold">Подтвердите почту</p>
-            <p>Ссылка на подтверждение отправлена вам на указанную почту. Если письма нет, попробуйте проверить папку спам.</p>
+            <p>Ссылка на подтверждение отправлена вам на <b>{{ user.email }}</b>. Если письма нет, попробуйте проверить папку спам.</p>
+            <span class="block underline hover:cursor-pointer" @click="showConfirmLayout = false">Повторить попытку</span>
             <router-link to="/login" class="inline-block w-full px-5 py-3 text-base font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Войти</router-link>
         </div>
     </div>
@@ -66,11 +67,11 @@ export default {
     },
     methods: {
         async register() {
-            this.disableForm = true;
             if (this.user.password != this.user.confirm_password) {
                 alert('Пароли не совпадают');
                 return;
             }
+            this.disableForm = true;
             try {
                 const data = await register(this.user.email, this.user.password, this.user.confirm_password);
                 if (data.status == 201) {
@@ -87,6 +88,11 @@ export default {
                 }
             }
             this.disableForm = false;
+        }
+    },
+    beforeMount() {
+        if (localStorage.getItem('token')) {
+            this.$router.push('/profile');
         }
     }
 }

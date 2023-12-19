@@ -10,7 +10,7 @@ export default {
 
 <template>
     <UserNavbar></UserNavbar>
-    <main class="p-4 md:ml-64 h-auto pt-20 text-gray-900 dark:text-white">
-        hello
+    <main class="p-4 md:ml-64 h-auto pt-20">
+        <p class="text-white font-bold text-3xl">MESSENGER</p>
     </main>
 </template>

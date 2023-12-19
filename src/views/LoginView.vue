@@ -12,32 +12,43 @@ export default {
         }
     },
     methods: {
-        async login() {
+        async performLogin() {
             this.disableForm = true;
+
             try {
                 const data = await login(this.user.email, this.user.password);
-                console.log(data);
-                if (data.status == 200) {
-                    localStorage.setItem('token', data.data.key);
-                    this.$router.push('/profile');
-                }
+                this.handleSuccessfulLogin(data);
             } catch (error) {
-                if (error.response && error.response.status === 401) {
-                    console.error('Неправильный логин или пароль');
-                } else {
-                    console.error('Ошибка входа:', error.message);
-                }
+                this.handleLoginError(error);
+            } finally {
+                this.disableForm = false;
             }
-            this.disableForm = false;
         },
+        handleSuccessfulLogin(data) {
+            localStorage.setItem('token', data.key);
+            this.$router.push('/profile');
+        },
+        handleLoginError(error) {
+            if (error.response && error.response.status === 401) {
+                console.error('Incorrect email or password. Please try again.');
+            } else {
+                console.error('Login error:', error.message);
+            }
+        },
+    },
+    beforeMount() {
+        if (localStorage.getItem('token')) {
+            this.$router.push('/profile');
+        }
     }
 }
+
 </script>
 
 <template>
     <div class="flex flex-col items-center justify-center h-screen px-6 pt-8 mx-auto md:h-screen pt:mt-0 dark:bg-gray-900">
         <RouterLink to="/" class="flex items-center justify-center mb-8 text-2xl font-semibold lg:mb-10 dark:text-white">
-            <img src="@/assets/logo.png" class="mr-4 h-11" alt="RCONNECT Logo">
+            <img src="@/assets/logo.png" class="h-11" alt="RCONNECT Logo">
         </RouterLink>
         <!-- Card -->
         <div class="items-center justify-center w-full lg:w-1/3 bg-white rounded-lg shadow-2xl lg:flex md:mt-0 lg:max-w-screen-lg 2xl:max:max-w-screen-lg xl:p-0 dark:bg-gray-800">
@@ -48,7 +59,7 @@ export default {
                 <h2 class="text-2xl font-bold text-center text-gray-900 lg:text-3xl dark:text-white">
                     Войдите в платформу
                 </h2>
-                <form class="mt-8 space-y-6" @submit.prevent="login()">
+                <form class="mt-8 space-y-6" @submit.prevent="performLogin()">
                     <div>
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ваша почта</label>
                         <input v-model="user.email" :disabled="disableForm" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="name@company.com" required>
