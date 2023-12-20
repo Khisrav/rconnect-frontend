@@ -13,7 +13,8 @@ export default {
 </script>
 
 <template>
-    <HomeHeader/> 
+    <div>
+        <HomeHeader/> 
     <section class="bg-white dark:bg-gray-900">
         <div class="py-16 px-4 mx-auto max-w-screen-xl text-center lg:py-40 lg:px-12 h-screen">
             <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">RCONNECT - платформа для студентов</h1>
@@ -44,4 +45,5 @@ export default {
             </div> -->
         </div>
     </section>
+    </div>
 </template>

@@ -15,8 +15,10 @@ export default {
 </script>
 
 <template>
-<UserNavbar></UserNavbar>
-<main class="p-4 md:ml-64 h-auto pt-20 bg-slate-100 dark:bg-gray-900 text-gray-900 dark:text-white">
-    hello there
-</main>
+<div>
+    <UserNavbar></UserNavbar>
+    <main class="p-4 md:ml-64 h-auto pt-20 bg-slate-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+        hello there
+    </main>
+</div>
 </template>

@@ -6,15 +6,19 @@
 
 * {
     font-family: 'Montserrat', sans-serif;
+    @apply transition-colors;
+    @apply duration-200;
+    @apply ease-in-out;
 }
 
 /* For Chrome, Safari, and newer Edge */
 ::-webkit-scrollbar {
     width: 8px; /* Width of the scrollbar */
+    height:8px;
 }
 
 ::-webkit-scrollbar-track {
-    @apply bg-gray-800; /* Color of the track (the area behind the scrollbar) */
+    @apply bg-transparent; /* Color of the track (the area behind the scrollbar) */
 }
 
 ::-webkit-scrollbar-thumb {
