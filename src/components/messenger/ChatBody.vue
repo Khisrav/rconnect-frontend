@@ -1,8 +1,8 @@
 <script>
-import ChatBubble from './ChatBubble.vue';
+// import ChatBubble from './ChatBubble.vue';
 export default {
     components: {
-        ChatBubble
+        // ChatBubble
     },
     methods: {
 
