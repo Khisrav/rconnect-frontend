@@ -73,7 +73,7 @@ export default {
             console.error('Error getting avatar:', error);
         }
     }
-}
+}   
 </script>
 
 <template>
@@ -313,7 +313,7 @@ export default {
                 clip-rule="evenodd"
                 ></path>
             </svg>
-            <span class="ml-3">Docs</span>
+            <span class="ml-3">Помочь проекту</span>
             </a>
         </li>
         </ul>
