@@ -4,7 +4,7 @@ import HomeViewBlock0 from '../components/HomeViewBlocks/HomeViewBlock0.vue';
 import HomeViewBlock1 from '../components/HomeViewBlocks/HomeViewBlock1.vue';
 import HomeViewBlock2 from '../components/HomeViewBlocks/HomeViewBlock2.vue';
 import HomeViewBlock3 from '../components/HomeViewBlocks/HomeViewBlock3.vue';
-import HomeViewBlockFooter from '../components/HomeViewBlocks/HomeViewBlockFooter.vue';
+import HomeFooter from '../components/HomeFooter.vue';
 import { initFlowbite } from 'flowbite';
 
 export default {
@@ -14,7 +14,7 @@ export default {
         HomeViewBlock1,
         HomeViewBlock2,
         HomeViewBlock3,
-        HomeViewBlockFooter
+        HomeFooter
     },
     mounted() {
         initFlowbite()
@@ -34,6 +34,6 @@ export default {
 
     <HomeViewBlock2/>
 
-    <HomeViewBlockFooter/>
+    <HomeFooter/>
 </div>
 </template>
