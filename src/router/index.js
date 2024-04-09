@@ -13,6 +13,14 @@ const router = createRouter({
       }
     },
     {
+      path: '/mission',
+      name: 'mission',
+      component: () => import('../views/HomeMissionView.vue'),
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
       path: '/login',
       name: 'login',
       component: () => import('../views/LoginView.vue'),
@@ -56,6 +64,14 @@ const router = createRouter({
       path: '/events',
       name: 'events',
       component: () => import('../views/EventsView.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/settings',
+      name: 'Settings',
+      component: () => import('../views/User/SettingsView.vue'),
       meta: {
         requiresAuth: true
       }

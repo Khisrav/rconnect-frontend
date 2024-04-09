@@ -18,7 +18,7 @@ export default {
                 { name: 'Худоёров Хисрав', title: 'Frontend Разработчик', avatar: '/team/khudoyorov-khisrav.jpg'},
                 { name: 'Имангулов Ролан', title: 'Backend Разработчик', avatar: '/team/imangulov-rolan.jpg'},
                 { name: 'Мишин Андрей', title: 'Project Manager', avatar: '/team/mishin-andrey.jpg'},
-                { name: 'Трофимова Анна', title: 'Project Manager', avatar: '/team/trofimova-anna.jpg'},
+                // { name: 'Трофимова Анна', title: 'Project Manager', avatar: '/team/trofimova-anna.jpg'},
                 { name: 'Шабунина Милана', title: 'HR', avatar: '/team/shabunina-milana.jpg'},
                 { name: 'Кондратьев Максим', title: 'SMM Специалист', avatar: '/team/kondratev-maxim.jpg'},
                 { name: 'Плеханов Сергей', title: 'Product Manager', avatar: '/team/plehanov-sergey.jpg'},

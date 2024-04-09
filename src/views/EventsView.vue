@@ -18,7 +18,7 @@ export default {
 <div>
     <UserNavbar></UserNavbar>
 
-    <main class="p-4 md:ml-64 h-auto pt-20 bg-slate-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+    <main class="p-4 md:ml-64 h-auto pt-20 bg-slate-200 dark:bg-gray-900 text-gray-900 dark:text-white">
         <div class="flex items-center justify-between">
             <button type="button" class="inline-flex items-center mb-4 px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
                 <svg class="w-4 h-4 me-2 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M18.8 4H5.2a1 1 0 0 0-.7 1.7l5.3 6 .2.7v4.8c0 .2 0 .4.2.4l3 2.3c.3.2.8 0 .8-.4v-7.1c0-.3 0-.5.2-.7l5.3-6a1 1 0 0 0-.7-1.7Z"/></svg>
@@ -29,14 +29,24 @@ export default {
                 На карте
             </button>
         </div>
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-            <a v-for="i in [1, 2, 3, 4, 5, 6]" href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg md:flex-row md:w-full hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                <img class="object-cover w-full rounded-t-lg h-full md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="https://random-image-pepebigotes.vercel.app/api/random-image" alt="">
-                <div class="flex flex-col justify-between p-4 leading-normal">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                </div>
-            </a>
+          <div class="grid grid-cols-1 lg:grid-cols-1 gap-4">
+            
+<article v-for="i in [1,2,3,4,5,6,7]" class="w-full mb-4 bg-white dark:bg-gray-800 rounded-2xl overflow-hidden p-2 flex flex-col xl:flex-row">
+    <a href="#" class="mb-2 xl:mb-0 w-2/5">
+        <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-1.png" class="mr-5 w-full" alt="Image 1">
+    </a>
+    <div class="w-3/5 p-4 flex flex-col justify-between">
+        <div>
+          <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
+            <a href="#">Всероссийская олимпиада по спортивному программированию в Москве для студентов младших курсов</a>
+        </h2>
+        <p class="mb-4 font-light text-gray-500 dark:text-gray-400">Over the past year, Volosoft has undergone many changes! After months of preparation. Over the past year, Volosoft has undergone many changes! After months of preparation.</p>
+        
+        </div>
+        <a href="#" class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:no-underline">Подробнее</a>
+    </div>
+</article>
+
         </div>
         
 <div class="text-center">

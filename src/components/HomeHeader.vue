@@ -1,4 +1,23 @@
 <template>
+  <div class="relative isolate flex items-center gap-x-6 overflow-hidden bg-primary-200 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
+    <div class="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl" aria-hidden="true">
+      <div class="aspect-[577/310] w-[36.0625rem] opacity-30" />
+    </div>
+    <div class="absolute left-[max(45rem,calc(50%+8rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl" aria-hidden="true">
+      <div class="aspect-[577/310] w-[36.0625rem] opacity-30" />
+    </div>
+    <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+      <p class="text-sm leading-6 text-gray-900">
+        <strong class="font-semibold">Сайт находится на стадии разработки</strong>
+      </p>
+    </div>
+    <div class="flex flex-1 justify-end">
+      <button type="button" class="-m-3 p-3 focus-visible:outline-offset-[-4px]">
+        <span class="sr-only">Dismiss</span>
+        <span class="h-5 w-5 text-gray-900 text-2xl" aria-hidden="true">&Cross;</span>
+      </button>
+    </div>
+  </div>
     <Snowfall/>
 <header>
     <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
@@ -50,22 +69,22 @@ export default {
         return {
             navigationLinks: [
                 {
-                    to: '#',
+                    to: '/',
                     title: 'Главная',
                     isCurrent: false
                 },
                 {
-                    to: '#about',
+                    to: '/#about',
                     title: 'О проекте',
                     isCurrent: false
                 },
                 {
-                    to: '#team',
+                    to: '/#team',
                     title: 'Команда',
                     isCurrent: false
                 },
                 {
-                    to: '#contacts',
+                    to: '/#contacts',
                     title: 'Контакты',
                     isCurrent: false
                 },
