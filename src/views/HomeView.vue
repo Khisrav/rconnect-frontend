@@ -31,7 +31,7 @@ export default {
 
 <template>
 <div>
-    <HomeHeader/> 
+    <HomeHeader/>
     
     <section class="bg-white dark:bg-gray-900">
         <div class="py-16 px-4 mx-auto max-w-screen-xl text-center lg:py-40 lg:px-12">
@@ -91,14 +91,13 @@ export default {
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Наша команда</h2>
                 <p class="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">Наша команда, состоящая из преданных студентов, стремится к тому, чтобы каждый мог достичь своих учебных и карьерных целей, предлагая вдохновение, поддержку и уникальные возможности для развития.</p>
             </div>
-            <!-- grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 -->
             <div class="flex flex-wrap justify-center">
-                <div v-for="member in teamMembers" class="lg:w-1/5 sm:w-1/3 m-3 h-full relative rounded-xl shadow-2xl">
+                <div v-for="member in teamMembers" class=" w-1/2 lg:w-1/5 sm:w-1/3 h-full p-2 relative rounded-xl shadow-2xl">
                     <img :src="member.avatar" width="100%" alt="" class="rounded-xl">
-                    <div class="transition rounded-xl bg-opacity-75 bg-blue-900 opacity-0 hover:opacity-100 text-slate-100 duration-300 absolute inset-0 z-10 flex justify-center items-center text-center px-5 pb-5">
+                    <div class="transition rounded-xl bg-opacity-75 m-2 bg-blue-900 opacity-0 hover:opacity-100 text-slate-100 duration-300 absolute inset-0 z-10 flex justify-center items-center text-center px-5 pb-5">
                         <div>
-                            <h3 class="text-xl font-bold tracking-tight text-white">{{ member.name }}</h3>
-                            <span class="">{{ member.title }}</span>
+                            <h3 class="font-bold tracking-tight text-white">{{ member.name }}</h3>
+                            <span class="text-sm lg:text-base">{{ member.title }}</span>
                             <!-- <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Jese drives the technical strategy of the themesberg platform and brand.</p> -->
                             <!-- <ul class="flex space-x-4 sm:mt-0">
                                 <li>
@@ -112,6 +111,7 @@ export default {
                 </div>
             </div>
         </div>
+        
     </section>
 
     <section class="bg-white dark:bg-gray-900" id="contacts">
